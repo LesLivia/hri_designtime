@@ -1,12 +1,18 @@
 {
-  "N_CONFIG": 100,
+  "N_CONFIG": 5,
   "N_BOUND": -1,
-  "N_SIM": 3,
-  "N_SAMPLE": 3,
+  "N_SIM": 1,
+  "N_SAMPLE": 1,
   "filter_processed": "true",
   "resample": "false",
-  "sample_sim": "true",
+  "sample_sim": "false",
   "factors": [
+    {
+      "id": "PROGRESS",
+      "type": "int",
+      "min": 0,
+      "max": 5
+    },
     {
       "id": "ORCH_1_Dstop",
       "type": "float",

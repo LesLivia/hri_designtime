@@ -64,7 +64,6 @@ if resample:
         new_conf = Configuration.sample(CONFIG_JSON_PATH)
         while not factor_mgr.validate(new_conf):
             new_conf = Configuration.sample(CONFIG_JSON_PATH)
-        new_conf.set_checkpoint(0)
         configurations.append(new_conf)
         if sample_sim:
             sim_files = []

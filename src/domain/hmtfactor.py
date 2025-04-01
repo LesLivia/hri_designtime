@@ -34,9 +34,6 @@ class HMTFactor:
             self.value = Point.parse(s)
 
     def sample(self):
-        if self.hmt_id == 'PROGRESS':
-            return
-
         if self.hmt_type == 'float':
             self.set_value(str(self.ranges[0][0] + ((self.ranges[0][1] - self.ranges[0][0]) * np.random.rand(1)[0])))
         elif self.hmt_type == 'int':
