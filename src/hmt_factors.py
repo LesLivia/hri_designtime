@@ -64,6 +64,7 @@ if resample:
         new_conf = Configuration.sample(CONFIG_JSON_PATH)
         while not factor_mgr.validate(new_conf):
             new_conf = Configuration.sample(CONFIG_JSON_PATH)
+        new_conf.set_checkpoint(0)
         configurations.append(new_conf)
         if sample_sim:
             sim_files = []
@@ -125,7 +126,8 @@ for i, conf in enumerate(configurations[:N]):
         continue
 
     # Replaces PARAM keywords within main template file with scenario parameters
-    param_mgr = Param_Mgr(json_mgr.rescale_hums(conf.get_checkpoint()), json_mgr.robots, json_mgr.layout, json_mgr.params)
+    param_mgr = Param_Mgr(json_mgr.rescale_hums(conf.get_checkpoint()), json_mgr.robots, json_mgr.layout,
+                          json_mgr.params)
     param_mgr.replace_params(SCENARIO_NAME)
 
     # Replaces TPLT keywords within main template file with individual automata templates

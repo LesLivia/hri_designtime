@@ -84,15 +84,15 @@ class Factor_Mgr:
             lines = upp_res.readlines()
             if m.m_id in ['PRSCS_LOWER_BOUND', 'PRSCS_UPPER_BOUND']:
                 pr_range = \
-                    [line.split(' Pr(<> ...) in ')[1].replace('[', '').replace(']', '').replace('\n', '').split(',')
-                     for line in lines if line.__contains__('Pr(<> ...)')][0]
+                    [line.split(' Pr(<> …) in ')[1].replace('[', '').replace(']', '').replace('\n', '').split(',')
+                     for line in lines if line.__contains__('Pr(<> …)')][0]
                 if m.m_id == 'PRSCS_LOWER_BOUND':
                     m.value = float(pr_range[0])
                 else:
-                    m.value = float(pr_range[1])
+                    m.value = float(pr_range[1].replace(' (95% CI)', ''))
             elif m.m_id.startswith('FTG'):
                 ftg_ranges = [line.split('Values in [')[1].split(']')[0].split(',') for l_i, line in enumerate(lines)
-                              if line.__contains__('Values in ') and not lines[l_i - 2].__contains__('Pr(<> ...)')]
+                              if line.__contains__('Values in ') and not lines[l_i - 2].__contains__('Pr(<> …)')]
                 ftg_ranges = [(float(r[0]), float(r[1])) for r in ftg_ranges]
                 ftg_ranges = [(r[0] + (r[1] - r[0]) / 2, (r[1] - r[0]) / 2) for r in ftg_ranges]
                 h_ids = [h.h_id - 1 for h in self.get_agents(m.m_id.replace('FTG_', ''))]
